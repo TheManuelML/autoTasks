@@ -1,5 +1,9 @@
 #!/bin/bash
 
+## Auto tasks
+## Created by Mahackmaga
+__version__="0.0.1"
+
 init(){
     echo "Initializating pentest"
     echo "----------------------"
@@ -37,7 +41,7 @@ osinfo() {
             if [ "$ttl" -gt 0 ] && [ "$ttl" -le 64 ]; then
                 echo "$ipv4 ttl=$ttl Linux"
             elif [[ "$ttl" -gt 64 ]]; then
-                echo "$ipv4 $ttl Windows"
+                echo "$ipv4 ttl=$ttl Windows"
             else
                 echo "Cannot sent packages to $ipv4"
             fi
@@ -50,24 +54,10 @@ osinfo() {
 }
 
 ports() {
-    ipv4=$1
-    pattern=$(verify_ip $ipv4)
-
-    if [[ -z "$1" ]]; then
-        echo "Usage: hack ports {target}"
-        exit 1
-    else
-        if [[ $pattern == "true" ]]; then
-            echo "Open ports"
-            echo "----------------------"
-            scan=$(sudo nmap -sS -p- -nPn $ipv4 -oG scan)
-            ports=$(cat scan | grep -oE "Ports: .*" | grep -oE '\b[0-9]+\b' | tr '\n' ',')
-            echo "$ports"
-        else
-            echo "Not a valid IP or unable to scan $ipv4"
-            exit 1
-        fi
-    fi
+    echo "Open ports"
+    echo "----------------------"
+    ports=$(cat scan | grep -oE "Ports: .*" | grep -oE '\b[0-9]+\b' | tr '\n' ',')
+    echo "$ports"
 }
 
 help() {
@@ -88,7 +78,7 @@ case $1 in
         init
     ;;
     ports)
-        ports $2
+        ports
     ;;
     *)
         help
