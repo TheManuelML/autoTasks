@@ -15,8 +15,8 @@ $ hack [command] {target}
 ## Example
 ```
 $ hack init; ls -l
-drwxrw-r-- contetn
-drwxrw-r-- explouts
+drwxrw-r-- content
+drwxrw-r-- exploits
 drwxrw-r-- nmap
 ```
 ```
