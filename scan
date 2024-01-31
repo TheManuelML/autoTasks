@@ -1,5 +1,0 @@
-# Nmap 7.94 scan initiated Wed Jan 31 13:52:38 2024 as: nmap -sS -p- --open --min-rate 5000 -oG scan -nPn -vvv 127.0.0.1
-# Ports scanned: TCP(65535;1-65535) UDP(0;) SCTP(0;) PROTOCOLS(0;)
-Host: 127.0.0.1 ()	Status: Up
-Host: 127.0.0.1 ()	Ports: 49176/open/tcp/////, 57621/open/tcp/////
-# Nmap done at Wed Jan 31 13:53:13 2024 -- 1 IP address (1 host up) scanned in 34.92 seconds
