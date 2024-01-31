@@ -2,7 +2,7 @@
 
 ## Auto tasks
 ## Created by Mahackmaga
-__version__="0.0.1"
+__version__="1.0"
 
 init(){
     echo "Initializating pentest"
@@ -54,20 +54,48 @@ osinfo() {
 }
 
 ports() {
-    echo "Open ports"
-    echo "----------------------"
-    ports=$(cat scan | grep -oE "Ports: .*" | grep -oE '\b[0-9]+\b' | tr '\n' ',')
-    echo "$ports"
+    file=$1 
+
+    if [[ -z "$1" ]]; then
+        echo "Usage: hack ports {target}"
+        exit 1
+    else
+        echo "Open ports"
+        echo "----------------------"
+        ports=$(cat $file | grep -oE "Ports: .*" | grep -oE '\b[0-9]+\b' | tr '\n' ',' | sed 's/,$//')
+        echo "$ports"
+        echo "----------------------"
+        echo "Copied in clipboard"
+
+        ## Copy depend of each clipboard
+        xclip=$(which xclip)
+        if [[ "${xclip:0:1}" == '/' ]]; then
+            echo "$ports" | sed 3d | tr -d '\n' | xclip -selection clipboard
+        fi
+
+        pbcopy=$(which pbcopy)
+        if [[ "${pbcopy:0:1}" == '/' ]]; then
+            echo "$ports" | sed 3d | tr -d '\n' | pbcopy
+        fi
+        
+        xsel=$(which xsel)
+        if [[ "${xsel:0:1}" == '/' ]]; then
+            echo "$ports" | sed 3d | tr -d '\n' | xsel --clipboard
+        fi
+
+    fi
 }
 
 help() {
     echo -e "No command coincidences"
     echo -e "Usage: hack [command]\n       hack [command] {target}"
     echo -e "\nCommands"
-    echo -e "init        Make the starting directories"
-    echo -e "osinfo      Gives the ttl and OS of a target {target}"
-    echo -e "ports       Return open ports of the grep (-oG) file"
-    echo -e "\nTarget\nRefers to an IPv4: 0.0.0.0"
+    echo -e "\tinit        Make the starting directories"
+    echo -e "\tosinfo      Gives the ttl and OS of a target {target}"
+    echo -e "\tports       Return ports of the document (-oG) {target}"
+    echo -e "\nTarget"
+    echo -e "\tIPv4: 0.0.0.0"
+    echo -e "\tNmap document"
 }
 
 case $1 in
@@ -78,7 +106,7 @@ case $1 in
         init
     ;;
     ports)
-        ports
+        ports $2
     ;;
     *)
         help
