@@ -11,21 +11,3 @@ Type hack in your terminal to print the usage of the script.
 ```
 $ hack [command] {target}
 ```
-
-## Example
-```
-$ hack init; ls -l
-drwxrw-r-- content
-drwxrw-r-- exploits
-drwxrw-r-- nmap
-```
-```
-$ hack osinfo 127.0.0.1
-127.0.0.1 ttl=64 Linux
-```
-
-## Work
-### Version
-Verion = **1.0**
-### Coming soon
-- [ ] [domain] Search for the domain name of a target {needs target}.
