@@ -1,7 +1,6 @@
 #!/bin/bash
 
 ## Auto tasks
-## Created by Mahackmaga
 __version__="1.0"
 
 init(){
@@ -88,11 +87,11 @@ ports() {
 
 help() {
     echo -e "No command coincidences"
-    echo -e "Usage: hack [command]\n       hack [command] {target}"
+    echo -e "Usage: hack [command]\n       hack [command] {target/file}"
     echo -e "\nCommands"
     echo -e "\tinit        Make the starting directories"
     echo -e "\tosinfo      Gives the ttl and OS of a target {target}"
-    echo -e "\tports       Return ports of the document (-oG) {target}"
+    echo -e "\tports       Return ports of an nmap scan file (-oG) {file}"
     echo -e "\nTarget"
     echo -e "\tIPv4: 0.0.0.0"
     echo -e "\tNmap document"
