@@ -9,5 +9,5 @@ A script useful to automate simple pentesting tasks.
 ## Usage
 Type ./hack in your terminal to print the usage of the script.
 ```
-$ ./hack [command] {target / file}
+$ ./hack
 ```
